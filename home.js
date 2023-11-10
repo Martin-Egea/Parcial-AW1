@@ -30,19 +30,24 @@ btnCargar.addEventListener('click', ()=>{
     const tituloImagen = document.getElementById('titulo').value;
     const descripcionImagen = document.getElementById('descripcion').value;
     const urlImagen = document.getElementById('imagen').value;
-    contImagenes++;  
     
-    cadenaDeCards += customCard(tituloImagen, descripcionImagen, urlImagen,contImagenes)
+    if(tituloImagen.value === "" && urlImagen.value === ""){
+        window.alert("Debe completar los campos obligatorios!");
+    }else{
+        contImagenes++;
+        cadenaDeCards += customCard(tituloImagen, descripcionImagen, urlImagen,contImagenes)
 
-    cardContainer.innerHTML = cadenaDeCards
-    actualizarBotonesAgregar()
-    botonesEliminar.forEach(boton => {
-        boton.addEventListener('click', (e) =>{            
-            let idBoton = e.currentTarget.id
-            let divParaEliminar = document.getElementById(idBoton)
-            divParaEliminar.remove();        
+        cardContainer.innerHTML = cadenaDeCards
+        actualizarBotonesAgregar()
+        botonesEliminar.forEach(boton => {
+            boton.addEventListener('click', (e) =>{            
+                let idBoton = e.currentTarget.id
+                let divParaEliminar = document.getElementById(idBoton)
+                divParaEliminar.remove();        
+            })
         })
-      })
+    }
+    
 });
 
 function actualizarBotonesAgregar(){
